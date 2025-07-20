@@ -1,10 +1,766 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cartoonify Me</title>
-  </head>
-  <body>
-    <h1>Welcome to Cartoonify Me</h1>
-    <p>This site is under construction.</p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoonify Me - AI Avatar Maker from Photos | Transform into Amazing Cartoons</title>
+    <meta name="description" content="Transform your ordinary photos into extraordinary cartoon masterpieces! Cartoonify Me uses advanced AI to create stunning anime, Lego, Simpson, and memoji-style avatars in seconds.">
+    <meta name="keywords" content="cartoon avatar, AI avatar maker, anime style, cartoon filter, photo to cartoon, avatar generator, cartoon creator, memoji maker, cartoon transformation, AI photo editor">
+    <meta name="author" content="Asil Arslan">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cartoonify.me">
+    <meta property="og:title" content="Cartoonify Me - Transform Photos into Amazing Cartoons with AI">
+    <meta property="og:description" content="Create stunning cartoon avatars from your photos! 16 unique styles including Anime, Simpson, Lego, and more. Generate up to 10 cartoons at once.">
+    <meta property="og:image" content="https://cartoonify.me/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cartoonify.me">
+    <meta property="twitter:title" content="Cartoonify Me - AI Avatar Maker from Photos">
+    <meta property="twitter:description" content="Transform your photos into amazing cartoons! 16 unique styles, generate up to 10 cartoons at once. Download now on App Store.">
+    <meta property="twitter:image" content="https://cartoonify.me/og-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://cartoonify.me">
+
+    <!-- App Store Link -->
+    <meta name="apple-itunes-app" content="app-id=6747951776">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Cartoonify Me",
+        "description": "Transform yourself into amazing cartoons! Turn your ordinary photos into extraordinary cartoon masterpieces with Cartoonify! Our advanced AI technology lets you create stunning cartoon versions of yourself in seconds.",
+        "applicationCategory": "PhotoApplication",
+        "operatingSystem": "iOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "downloadUrl": "https://apps.apple.com/us/app/cartoonify-me/id6747951776",
+        "author": {
+            "@type": "Person",
+            "name": "Asil Arslan"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "ratingCount": "50"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="cartoonify-me-logo.png">
+    <link rel="apple-touch-icon" href="cartoonify-me-logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="cartoonify-me-logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="cartoonify-me-logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B5CF6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            padding: 2px;
+            box-shadow: 0 2px 6px rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B5CF6;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .app-store-badge {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .how-it-works {
+            background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .styles-showcase {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .styles-showcase h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .style-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .style-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #8B5CF6;
+        }
+
+        .style-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .testimonials {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #8B5CF6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            z-index: 999;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                width: 200px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 1rem;
+                gap: 1rem;
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .features-grid, .steps, .testimonial-grid, .styles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        .seo-content {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .seo-content h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .keywords {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .keywords h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .keywords ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .keywords li {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #8B5CF6;
+            border: 1px solid #8B5CF6;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="cartoonify-me-logo.png" alt="Cartoonify Me Logo" class="header-logo">
+                Cartoonify Me
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#styles">Styles</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <img src="cartoonify-me-logo.png" alt="Cartoonify Me Logo" class="hero-logo">
+                <h1>Transform into Amazing Cartoons!</h1>
+                <p>Turn your ordinary photos into extraordinary cartoon masterpieces with advanced AI technology. Create stunning cartoon versions of yourself in seconds with 16 unique styles!</p>
+                <a href="https://apps.apple.com/us/app/cartoonify-me/id6747951776" class="cta-button">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1704153600" alt="Download on the App Store" class="app-store-badge">
+                </a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Powerful AI Cartoon Creation Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>16 Unique Cartoon Styles</h3>
+                        <p>Choose from Anime, Simpson, Lego, Memoji, Minecraft, and 11 more amazing cartoon styles to transform your photos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Generate Up to 10 Cartoons</h3>
+                        <p>Create multiple cartoon versions at once! Generate 1-10 different cartoon images from a single photo in seconds.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎭</div>
+                        <h3>Character Personas</h3>
+                        <p>Add personality with character personas like Robot, Vampire, Superhero, Angel, and more to make your cartoons unique.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Multiple Aspect Ratios</h3>
+                        <p>Perfect for all your needs! Create cartoons in different aspect ratios suitable for profile pictures and social media.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>High-Quality PNG Output</h3>
+                        <p>Get crisp, high-resolution PNG images perfect for printing, sharing, or using as profile pictures on any platform.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>History & Easy Sharing</h3>
+                        <p>Save your favorite creations in the history section and share your amazing cartoon transformations with friends instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="styles" class="styles-showcase">
+            <div class="container">
+                <h2>16 Amazing Cartoon Styles</h2>
+                <div class="styles-grid">
+                    <div class="style-card">
+                        <span class="style-emoji">🌸</span>
+                        <h3>Anime Style</h3>
+                        <p>Japanese animation inspired</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">💛</span>
+                        <h3>Simpson Style</h3>
+                        <p>Classic cartoon family look</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">🧱</span>
+                        <h3>Lego Style</h3>
+                        <p>LEGO-inspired block design</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">😊</span>
+                        <h3>Memoji Style</h3>
+                        <p>Apple Memoji-like avatars</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">⛏️</span>
+                        <h3>Minecraft Style</h3>
+                        <p>Pixelated block world</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">✂️</span>
+                        <h3>Paper Cutout</h3>
+                        <p>South Park inspired</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">🎭</span>
+                        <h3>Emoji Style</h3>
+                        <p>Fun emoji-like cartoons</p>
+                    </div>
+                    <div class="style-card">
+                        <span class="style-emoji">📦</span>
+                        <h3>Voxel Art</h3>
+                        <p>3D pixel art style</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How Cartoonify Me Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Upload Your Photo</h3>
+                        <p>Take a new photo or select one from your gallery that you want to transform into a cartoon</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Choose Style & Persona</h3>
+                        <p>Select from 16 cartoon styles and add optional character personas like Superhero, Robot, or Angel</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Generate & Share</h3>
+                        <p>AI creates up to 10 amazing cartoon versions instantly. Save your favorites and share them everywhere!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>What Users Are Saying</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"Amazing app! I love how I can generate multiple cartoon styles at once. The anime style is absolutely perfect!"</p>
+                        <div class="testimonial-author">- Emma K., Artist</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Perfect for social media! I use different cartoon styles for my profile pictures. The quality is incredible."</p>
+                        <div class="testimonial-author">- Michael R., Influencer</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"My kids love creating cartoon versions of themselves. The character personas feature is so fun and creative!"</p>
+                        <div class="testimonial-author">- Sarah L., Parent</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-content">
+            <div class="container">
+                <h2>The Ultimate AI Cartoon Avatar Creator</h2>
+                <p>Cartoonify Me revolutionizes how you create cartoon avatars from photos. Our advanced artificial intelligence technology transforms ordinary selfies into extraordinary cartoon masterpieces, making it the most comprehensive cartoon creation app available on iOS.</p>
+                
+                <p>Whether you're creating anime-style avatars, fun Simpson-style cartoons, or unique Lego-inspired characters, our AI-powered platform provides instant access to professional-quality cartoon transformations. The app supports 16 different cartoon styles and multiple character personas for unlimited creative possibilities.</p>
+
+                <h2>Perfect for Social Media and Personal Use</h2>
+                <p>Content creators, social media enthusiasts, families, and cartoon lovers worldwide trust Cartoonify Me for creating unique avatar content. The app generates up to 10 cartoon versions simultaneously, making it perfect for any creative project or social media campaign.</p>
+
+                <div class="keywords">
+                    <h3>Supported Cartoon Styles & Features</h3>
+                    <ul>
+                        <li>Anime Style</li>
+                        <li>Simpson Style</li>
+                        <li>Lego Style</li>
+                        <li>Memoji Style</li>
+                        <li>Minecraft Style</li>
+                        <li>Paper Cutout</li>
+                        <li>Emoji Style</li>
+                        <li>Voxel Art</li>
+                        <li>Character Personas</li>
+                        <li>High-Quality PNG</li>
+                        <li>Social Media Ready</li>
+                        <li>Instant Generation</li>
+                    </ul>
+                </div>
+
+                <h2>Advanced AI Technology for Realistic Results</h2>
+                <p>Our proprietary machine learning algorithms have been trained on thousands of cartoon styles, ensuring high-quality transformations that capture your unique features while applying stunning artistic styles. The app continuously learns and improves, expanding its creative capabilities with regular updates.</p>
+
+                <p>Cartoonify Me works seamlessly on iPhone, iPad, and Mac, making it perfect for creating cartoon avatars anywhere. The app's intuitive interface ensures that both beginners and professionals can create amazing cartoon transformations quickly and easily.</p>
+            </div>
+        </section>
+
+        <section id="download" class="cta-section">
+            <div class="container">
+                <h2>Start Creating Amazing Cartoons Today!</h2>
+                <p>Join thousands of users who create stunning cartoon avatars with Cartoonify Me</p>
+                <a href="https://apps.apple.com/us/app/cartoonify-me/id6747951776" class="cta-button">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1704153600" alt="Download on the App Store" class="app-store-badge">
+                </a>
+                <br><br>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Compatible with iPhone, iPad, and Mac • iOS 17.6+ Required • Free with Premium Options</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:asilarslan93@gmail.com">Support</a>
+                <a href="terms-of-use.html">Terms of Use</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="https://apps.apple.com/us/app/cartoonify-me/id6747951776">App Store</a>
+            </div>
+            <p>&copy; 2025 Cartoonify Me by Asil Arslan. All rights reserved.</p>
+            <p>Transform your photos into amazing cartoons with AI-powered technology.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            console.log('Menu toggle clicked');
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+                console.log('Menu active state:', navLinks.classList.contains('active'));
+            }
+        }
+
+        // Close menu when clicking on a link
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('navLinks').classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const nav = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+                if (nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
