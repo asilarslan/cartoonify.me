@@ -293,10 +293,19 @@
             border-color: #8B5CF6;
         }
 
-        .style-emoji {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .style-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 0.5rem;
             display: block;
+            border-radius: 12px;
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .style-card:hover .style-icon {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
         }
 
         .testimonials {
@@ -549,7 +558,7 @@
                     <div class="feature-card">
                         <div class="feature-icon">🎨</div>
                         <h3>16 Unique Cartoon Styles</h3>
-                        <p>Choose from Anime, Simpson, Lego, Memoji, Minecraft, and 11 more amazing cartoon styles to transform your photos.</p>
+                        <p>Choose from Anime, Cartoon, Clay, Gothic, Graphic Novel, and 11 more amazing cartoon styles to transform your photos.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
@@ -585,44 +594,84 @@
                 <h2>16 Amazing Cartoon Styles</h2>
                 <div class="styles-grid">
                     <div class="style-card">
-                        <span class="style-emoji">🌸</span>
-                        <h3>Anime Style</h3>
+                        <img src="style/anime.png" alt="Anime Style" class="style-icon">
+                        <h3>Anime</h3>
                         <p>Japanese animation inspired</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">💛</span>
-                        <h3>Simpson Style</h3>
-                        <p>Classic cartoon family look</p>
+                        <img src="style/cartoon.png" alt="Cartoon Style" class="style-icon">
+                        <h3>Cartoon</h3>
+                        <p>Classic cartoon style</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">🧱</span>
-                        <h3>Lego Style</h3>
-                        <p>LEGO-inspired block design</p>
+                        <img src="style/clay.png" alt="Clay Style" class="style-icon">
+                        <h3>Clay</h3>
+                        <p>3D clay animation look</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">😊</span>
-                        <h3>Memoji Style</h3>
-                        <p>Apple Memoji-like avatars</p>
+                        <img src="style/gothic.png" alt="Gothic Style" class="style-icon">
+                        <h3>Gothic</h3>
+                        <p>Dark and mysterious style</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">⛏️</span>
-                        <h3>Minecraft Style</h3>
+                        <img src="style/graphicNovel.png" alt="Graphic Novel Style" class="style-icon">
+                        <h3>Graphic Novel</h3>
+                        <p>Comic book illustration</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/lego.png" alt="Lego Style" class="style-icon">
+                        <h3>Lego</h3>
+                        <p>LEGO brick character style</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/memoji.png" alt="Memoji Style" class="style-icon">
+                        <h3>Memoji</h3>
+                        <p>Apple-style emoji avatars</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/minecraft.png" alt="Minecraft Style" class="style-icon">
+                        <h3>Minecraft</h3>
                         <p>Pixelated block world</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">✂️</span>
-                        <h3>Paper Cutout</h3>
-                        <p>South Park inspired</p>
+                        <img src="style/minimalist.png" alt="Minimalist Style" class="style-icon">
+                        <h3>Minimalist</h3>
+                        <p>Clean and simple design</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">🎭</span>
-                        <h3>Emoji Style</h3>
-                        <p>Fun emoji-like cartoons</p>
+                        <img src="style/pixelArt.png" alt="Pixel Art Style" class="style-icon">
+                        <h3>Pixel Art</h3>
+                        <p>Retro 8-bit game style</p>
                     </div>
                     <div class="style-card">
-                        <span class="style-emoji">📦</span>
-                        <h3>Voxel Art</h3>
-                        <p>3D pixel art style</p>
+                        <img src="style/random.png" alt="Random Style" class="style-icon">
+                        <h3>Random</h3>
+                        <p>Surprise me with any style</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/simpsons.png" alt="Simpsons Style" class="style-icon">
+                        <h3>Simpsons</h3>
+                        <p>Classic yellow family look</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/sketch.png" alt="Sketch Style" class="style-icon">
+                        <h3>Sketch</h3>
+                        <p>Hand-drawn pencil style</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/southPark.png" alt="South Park Style" class="style-icon">
+                        <h3>South Park</h3>
+                        <p>Paper cutout animation</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/toy.png" alt="Toy Style" class="style-icon">
+                        <h3>Toy</h3>
+                        <p>Plastic toy character look</p>
+                    </div>
+                    <div class="style-card">
+                        <img src="style/watercolor.png" alt="Watercolor Style" class="style-icon">
+                        <h3>Watercolor</h3>
+                        <p>Soft painted art style</p>
                     </div>
                 </div>
             </div>
@@ -640,7 +689,7 @@
                     <div class="step">
                         <div class="step-number">2</div>
                         <h3>Choose Style & Persona</h3>
-                        <p>Select from 16 cartoon styles and add optional character personas like Superhero, Robot, or Angel</p>
+                        <p>Select from 16 cartoon styles like Anime, Simpsons, Lego, Gothic, Clay, or Watercolor and add optional character personas like Superhero, Robot, or Angel</p>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
@@ -676,7 +725,7 @@
                 <h2>The Ultimate AI Cartoon Avatar Creator</h2>
                 <p>Cartoonify Me revolutionizes how you create cartoon avatars from photos. Our advanced artificial intelligence technology transforms ordinary selfies into extraordinary cartoon masterpieces, making it the most comprehensive cartoon creation app available on iOS.</p>
                 
-                <p>Whether you're creating anime-style avatars, fun Simpson-style cartoons, or unique Lego-inspired characters, our AI-powered platform provides instant access to professional-quality cartoon transformations. The app supports 16 different cartoon styles and multiple character personas for unlimited creative possibilities.</p>
+                <p>Whether you're creating anime-style avatars, fun Simpsons cartoons, or unique Lego-inspired characters, our AI-powered platform provides instant access to professional-quality cartoon transformations. The app supports 16 different cartoon styles including Gothic, Clay, Watercolor, and Pixel Art for unlimited creative possibilities.</p>
 
                 <h2>Perfect for Social Media and Personal Use</h2>
                 <p>Content creators, social media enthusiasts, families, and cartoon lovers worldwide trust Cartoonify Me for creating unique avatar content. The app generates up to 10 cartoon versions simultaneously, making it perfect for any creative project or social media campaign.</p>
@@ -684,14 +733,22 @@
                 <div class="keywords">
                     <h3>Supported Cartoon Styles & Features</h3>
                     <ul>
-                        <li>Anime Style</li>
-                        <li>Simpson Style</li>
-                        <li>Lego Style</li>
-                        <li>Memoji Style</li>
-                        <li>Minecraft Style</li>
-                        <li>Paper Cutout</li>
-                        <li>Emoji Style</li>
-                        <li>Voxel Art</li>
+                        <li>Anime</li>
+                        <li>Cartoon</li>
+                        <li>Clay</li>
+                        <li>Gothic</li>
+                        <li>Graphic Novel</li>
+                        <li>Lego</li>
+                        <li>Memoji</li>
+                        <li>Minecraft</li>
+                        <li>Minimalist</li>
+                        <li>Pixel Art</li>
+                        <li>Random</li>
+                        <li>Simpsons</li>
+                        <li>Sketch</li>
+                        <li>South Park</li>
+                        <li>Toy</li>
+                        <li>Watercolor</li>
                         <li>Character Personas</li>
                         <li>High-Quality PNG</li>
                         <li>Social Media Ready</li>
